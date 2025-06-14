@@ -25,7 +25,7 @@
         .section h2 {
             font-size: 18px;
             margin-bottom: 10px;
-            color: #0078d4; /* Màu xanh công ty CTC */
+            color: #0078d4;
         }
         .section select, .section textarea {
             width: 100%;
@@ -47,12 +47,18 @@
             border: none;
             border-radius: 4px;
             cursor: pointer;
-            background-color: #0078d4; /* Màu xanh CTC */
+            background-color: #0078d4;
             color: white;
             transition: background-color 0.3s;
         }
         .buttons button:hover {
-            background-color: #005a9e; /* Màu đậm hơn khi hover */
+            background-color: #005a9e;
+        }
+        #result {
+            white-space: pre-wrap;
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 4px;
         }
     </style>
 </head>
@@ -62,12 +68,12 @@
 
         <div class="section">
             <h2>1. Your Idea / あなたのアイデア</h2>
-            <textarea rows="3" placeholder="Enter your idea here... / アイデアを入力"></textarea>
+            <textarea id="userIdea" rows="3" placeholder="Enter your idea here... / アイデアを入力"></textarea>
         </div>
 
         <div class="section">
             <h2>2. Scene Type / シーンタイプ</h2>
-            <select>
+            <select id="sceneType">
                 <option value="" disabled selected>-- Choose / 選択してください --</option>
                 <option value="cinematic">Cinematic / シネマ風</option>
                 <option value="product">Product Demo / 製品デモ</option>
@@ -79,7 +85,7 @@
 
         <div class="section">
             <h2>3. Emotion / 感情</h2>
-            <select>
+            <select id="emotion">
                 <option value="" disabled selected>-- Choose / 選択してください --</option>
                 <option value="inspiring">Inspiring / 感動的</option>
                 <option value="peaceful">Peaceful / 平和的</option>
@@ -91,23 +97,62 @@
 
         <div class="section">
             <h2>4. Character & Action / キャラクターとアクション</h2>
-            <textarea rows="3" placeholder="Describe character and action... / キャラクターとアクションを記述"></textarea>
+            <textarea id="characterAction" rows="3" placeholder="Describe character and action... / キャラクターとアクションを記述"></textarea>
         </div>
 
         <div class="section">
             <h2>5. Visual & Camera Style / ビジュアルとカメラスタイル</h2>
-            <textarea rows="3" placeholder="Describe visual and camera style... / ビジュアルとカメラスタイルを記述"></textarea>
+            <textarea id="visualStyle" rows="3" placeholder="Describe visual and camera style... / ビジュアルとカメラスタイルを記述"></textarea>
         </div>
 
         <div class="section">
             <h2>6. Final Message / 最終メッセージ</h2>
-            <textarea rows="3" placeholder="Add final message... / 最終メッセージを追加"></textarea>
+            <textarea id="finalMessage" rows="3" placeholder="Add final message... / 最終メッセージを追加"></textarea>
         </div>
 
         <div class="buttons">
-            <button>Generate / 生成</button>
-            <button>Inspire Me / インスピレーション</button>
+            <button onclick="generatePrompt()">Generate / 生成</button>
+            <button onclick="inspireMe()">Inspire Me / インスピレーション</button>
+        </div>
+
+        <div class="section">
+            <h2>Generated Prompt / 生成されたプロンプト</h2>
+            <pre id="result"></pre>
         </div>
     </div>
+
+    <script>
+        const samplePrompts = [
+            "A Japanese beauty queen, 24 years old, in a sparkling gown and diamond crown, speaks into microphone on a grand stage with confetti, audience cheering. Cinematic, 4K, pull out, arc shot, inspiring mood.",
+            "An elderly Japanese man, 70 years old, paddling a kayak in Ha Long Bay at golden hour, smiling with joy. Gentle sea splashes, cinematic, warm light, drone shot, peaceful emotion.",
+            "A young Japanese girl in a convertible car, shouting into a speaker on a busy street. Urban, vibrant, 1080p, side tracking shot, funny mood.",
+            "A Japanese mother scolds her son, then smiles and runs outside. Casual, fun, 1080p, over-the-shoulder shot, happy emotion.",
+            "A young software engineer, seated in a modern office filled with monitors and sticky notes, types rapidly while sipping coffee. Cinematic lighting through glass, close-up of code on screen, 4K clarity, inspiring and focused mood."
+        ];
+
+        function generatePrompt() {
+            const idea = document.getElementById('userIdea').value;
+            const sceneType = document.getElementById('sceneType').value;
+            const emotion = document.getElementById('emotion').value;
+            const characterAction = document.getElementById('characterAction').value;
+            const visualStyle = document.getElementById('visualStyle').value;
+            const finalMessage = document.getElementById('finalMessage').value;
+
+            let prompt = idea || "A scene based on user input";
+            if (sceneType) prompt += `, ${sceneType}`;
+            if (emotion) prompt += `, ${emotion} mood`;
+            if (characterAction) prompt += `, ${characterAction}`;
+            if (visualStyle) prompt += `, ${visualStyle}`;
+            if (finalMessage) prompt += `, ending with ${finalMessage}`;
+
+            document.getElementById('result').innerText = `Generated Prompt: ${prompt}`;
+        }
+
+        function inspireMe() {
+            const randomPrompt = samplePrompts[Math.floor(Math.random() * samplePrompts.length)];
+            document.getElementById('userIdea').value = randomPrompt.split('.')[0];
+            document.getElementById('result').innerText = `Inspired Prompt: ${randomPrompt}`;
+        }
+    </script>
 </body>
 </html>
