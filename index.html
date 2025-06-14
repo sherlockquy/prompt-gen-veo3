@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>🎥 AI Video Prompt Generator / プロンプト生成</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .section h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #0078d4; /* Màu xanh công ty CTC */
+        }
+        .section select, .section textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .buttons button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            background-color: #0078d4; /* Màu xanh CTC */
+            color: white;
+            transition: background-color 0.3s;
+        }
+        .buttons button:hover {
+            background-color: #005a9e; /* Màu đậm hơn khi hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎥 AI Video Prompt Generator / プロンプト生成</h1>
+
+        <div class="section">
+            <h2>1. Your Idea / あなたのアイデア</h2>
+            <textarea rows="3" placeholder="Enter your idea here... / アイデアを入力"></textarea>
+        </div>
+
+        <div class="section">
+            <h2>2. Scene Type / シーンタイプ</h2>
+            <select>
+                <option value="" disabled selected>-- Choose / 選択してください --</option>
+                <option value="cinematic">Cinematic / シネマ風</option>
+                <option value="product">Product Demo / 製品デモ</option>
+                <option value="anime">Anime Style / アニメスタイル</option>
+                <option value="training">Training / Educational / トレーニング/教育</option>
+                <option value="abstract">Abstract / Dreamlike / 抽象的/夢想的</option>
+            </select>
+        </div>
+
+        <div class="section">
+            <h2>3. Emotion / 感情</h2>
+            <select>
+                <option value="" disabled selected>-- Choose / 選択してください --</option>
+                <option value="inspiring">Inspiring / 感動的</option>
+                <option value="peaceful">Peaceful / 平和的</option>
+                <option value="funny">Funny / ユーモラス</option>
+                <option value="mysterious">Mysterious / 神秘的</option>
+                <option value="sad">Sad / 悲しい</option>
+            </select>
+        </div>
+
+        <div class="section">
+            <h2>4. Character & Action / キャラクターとアクション</h2>
+            <textarea rows="3" placeholder="Describe character and action... / キャラクターとアクションを記述"></textarea>
+        </div>
+
+        <div class="section">
+            <h2>5. Visual & Camera Style / ビジュアルとカメラスタイル</h2>
+            <textarea rows="3" placeholder="Describe visual and camera style... / ビジュアルとカメラスタイルを記述"></textarea>
+        </div>
+
+        <div class="section">
+            <h2>6. Final Message / 最終メッセージ</h2>
+            <textarea rows="3" placeholder="Add final message... / 最終メッセージを追加"></textarea>
+        </div>
+
+        <div class="buttons">
+            <button>Generate / 生成</button>
+            <button>Inspire Me / インスピレーション</button>
+        </div>
+    </div>
+</body>
+</html>

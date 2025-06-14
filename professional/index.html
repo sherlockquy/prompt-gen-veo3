@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎬 AI Video Prompt Generator</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { background-color: #1e1e2f; color: #f0f0f0; padding: 2rem; }
+    h1 { text-align: center; margin-bottom: 2rem; }
+    label { margin-top: 1rem; font-weight: bold; }
+    textarea, select, input { margin-top: 0.5rem; }
+    .output { white-space: pre-wrap; background: #2c2c3e; padding: 1rem; border-radius: 8px; margin-top: 2rem; border: 1px solid #444; }
+    .btn-primary { margin-top: 1.5rem; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎥 AI Video Prompt Generator / プロンプト生成</h1>
+
+    <div class="mb-3">
+      <label>1. Your Idea / あなたのアイデア</label>
+      <textarea id="basicIdea" class="form-control" placeholder="e.g., A cat sleeping peacefully by the window..."></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label>2. Scene Type / シーンタイプ</label>
+      <select id="sceneType" class="form-select">
+        <option value="">-- Select / 選択してください --</option>
+        <option>Cinematic</option>
+        <option>Product Demo</option>
+        <option>Anime Style</option>
+        <option>Training / Educational</option>
+        <option>Abstract / Dreamlike</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label>3. Emotion / 感情</label>
+      <select id="emotion" class="form-select">
+        <option value="">-- Choose / 選択してください --</option>
+        <option>Inspiring</option>
+        <option>Peaceful</option>
+        <option>Funny</option>
+        <option>Mysterious</option>
+        <option>Sad</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label>4. Character & Action / キャラクターとアクション</label>
+      <textarea id="characterAction" class="form-control" placeholder="e.g., A young woman confidently walks across the stage..."></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label>5. Visual & Camera Style / ビジュアルとカメラスタイル</label>
+      <textarea id="style" class="form-control" placeholder="e.g., 4K, cinematic lighting, slow-motion, 35mm film..."></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label>6. Final Message / 最終メッセージ</label>
+      <input id="message" class="form-control" placeholder="e.g., Convey warmth and appreciation..." />
+    </div>
+
+    <button class="btn btn-primary" onclick="generatePrompt()">Generate Prompt / プロンプト生成</button>
+    <button class="btn btn-secondary ms-2" onclick="randomPrompt()">Inspire Me / アイデア欲しい</button>
+
+    <div class="output" id="result"></div>
+  </div>
+
+  <script>
+    const samples = [
+      "A fluffy calico cat naps in a warm sunbeam on a wooden floor. Cinematic, 4k, slow zoom-in, shallow depth of field, peaceful tone.",
+      "A futuristic drone races through a neon-lit city at night. Anime style, dynamic angle, synthwave music.",
+      "A teacher explains a math concept on a digital board. Educational tone, clean lighting, side camera view.",
+      "A surreal dream where flowers bloom from city pavement. Abstract, slow motion, vivid colors, ethereal.",
+      "A woman in a business suit walks through a modern office, smiling confidently. Product demo, crisp visuals, upbeat mood."
+    ];
+
+    function generatePrompt() {
+      const idea = document.getElementById('basicIdea').value.trim();
+      const sceneType = document.getElementById('sceneType').value.trim();
+      const emotion = document.getElementById('emotion').value.trim();
+      const action = document.getElementById('characterAction').value.trim();
+      const style = document.getElementById('style').value.trim();
+      const message = document.getElementById('message').value.trim();
+
+      let result = `Prompt:\n`;
+      if (idea) result += `Idea: ${idea}\n`;
+      if (action) result += `Character & Action: ${action}\n`;
+      if (sceneType) result += `Scene Type: ${sceneType}\n`;
+      if (emotion) result += `Emotion: ${emotion}\n`;
+      if (style) result += `Visual Style: ${style}\n`;
+      if (message) result += `Message: ${message}`;
+
+      document.getElementById('result').innerText = result;
+    }
+
+    function randomPrompt() {
+      const sample = samples[Math.floor(Math.random() * samples.length)];
+      document.getElementById('result').innerText = `Prompt:\n${sample}`;
+    }
+  </script>
+</body>
+</html>

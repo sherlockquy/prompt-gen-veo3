@@ -1,0 +1,65 @@
+index.html<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>VEO 3 Prompt Generator</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; max-width: 800px; margin: auto; }
+    h1 { text-align: center; }
+    label { font-weight: bold; display: block; margin-top: 15px; }
+    textarea, input, select { width: 100%; padding: 8px; margin-top: 5px; }
+    .output { white-space: pre-wrap; background: #f4f4f4; padding: 10px; margin-top: 20px; border: 1px solid #ccc; }
+    button { margin-top: 20px; padding: 10px 15px; }
+  </style>
+</head>
+<body>
+  <h1>🎥 VEO 3 Prompt Generator / プロンプト生成</h1>
+
+  <label>1. Character Description / 登場人物の描写</label>
+  <textarea id="character" placeholder="e.g., A 25-year-old Vietnamese woman in a white Ao Dai..."></textarea>
+
+  <label>2. Scene Setting / 場面設定</label>
+  <textarea id="scene" placeholder="e.g., On the stage of Miss Universe Vietnam..."></textarea>
+
+  <label>3. Action / アクション</label>
+  <textarea id="action" placeholder="e.g., She walks confidently and waves to the audience..."></textarea>
+
+  <label>4. Tone & Emotion / トーンと感情</label>
+  <select id="tone">
+    <option value="">-- Choose / 選択してください --</option>
+    <option value="Inspiring and emotional">Inspiring and emotional / 感動的でインスパイア</option>
+    <option value="Professional and confident">Professional and confident / プロフェッショナルで自信に満ちた</option>
+    <option value="Friendly and cheerful">Friendly and cheerful / フレンドリーで陽気</option>
+  </select>
+
+  <label>5. Background Music & Lighting / 音楽・照明</label>
+  <textarea id="ambience" placeholder="e.g., Soft piano music with warm yellow lighting..."></textarea>
+
+  <label>6. Message / メッセージの意図</label>
+  <input id="message" placeholder="e.g., Gratitude and celebration / 感謝と祝福" />
+
+  <button onclick="generatePrompt()">Generate Prompt / プロンプト生成</button>
+
+  <div class="output" id="result"></div>
+
+  <script>
+    function generatePrompt() {
+      const character = document.getElementById('character').value.trim();
+      const scene = document.getElementById('scene').value.trim();
+      const action = document.getElementById('action').value.trim();
+      const tone = document.getElementById('tone').value.trim();
+      const ambience = document.getElementById('ambience').value.trim();
+      const message = document.getElementById('message').value.trim();
+
+      let result = `Scene: ${scene}\n`;
+      result += `Character: ${character}\n`;
+      result += `Action: ${action}\n`;
+      if (tone) result += `Tone: ${tone}\n`;
+      if (ambience) result += `Ambience: ${ambience}\n`;
+      if (message) result += `Message: ${message}`;
+
+      document.getElementById('result').innerText = result;
+    }
+  </script>
+</body>
+</html>
